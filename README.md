@@ -20,16 +20,21 @@ the log is in json format and contain the following fields:
 There are two versios, `debian` which comes without the docker binaries and must be mounted against docker on the host, and `alpine` which contains docker binaries inside and needs to mount only the docker sock
 
 ## Usage
-Run from command line:
+### Command line
+alpine version:
 ```
-docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-service-logger:latest
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-service-logger:alpine-1.0
 ```
-Or run using compose file
+debian version:
+```
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker docker-service-logger:debian-1.0
+```
+### Compose file
 ```
 version: '3.7'
 services:
   services-logger:
-    image: 'docker-service-logger:latest'
+    image: 'docker-service-logger:alpine-1.0'
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
       deploy:
