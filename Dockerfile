@@ -7,4 +7,4 @@ ENV INTERVAL 30
 COPY docker-service-log /docker-service-log
 COPY entrypoint /entrypoint
 
-CMD /entrypoint
+CMD sh /entrypoint

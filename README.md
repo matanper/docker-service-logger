@@ -16,17 +16,20 @@ the log is in json format and contain the following fields:
 {"service":"redis","mode":"replicated","replicas_text":"3/4","running":3,"total":4,"running_pct":0.75}
 ```
 
+## Versions
+There are two versios, `debian` which comes without the docker binaries and must be mounted against docker on the host, and `alpine` which contains docker binaries inside and needs to mount only the docker sock
+
 ## Usage
 Run from command line:
 ```
-docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-logger
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-service-logger:latest
 ```
 Or run using compose file
 ```
 version: '3.7'
 services:
   services-logger:
-    image: 'docker-logger:latest'
+    image: 'docker-service-logger:latest'
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
       deploy:
