@@ -1,5 +1,5 @@
 # Docker Service Logger
-Dockereized simple script to monitor and log swarm services
+Dockereized simple script to monitor and log swarm services. the logs are written to the system output and can be transferred monitoring system such as ELK/splunk
 
 ## Log format
 the log is in json format and contain the following fields:
