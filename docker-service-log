@@ -1,0 +1,17 @@
+#!/bin/sh
+
+# Read the services state
+docker service ls --format "{{.Name}},{{.Mode}},{{.Replicas}}" | while read -r SERVICE;
+do
+	# Split to fields
+	NAME="$(echo $SERVICE | cut -d',' -f1)"
+	MODE="$(echo $SERVICE | cut -d',' -f2)"
+	REPLICAS="$(echo $SERVICE | cut -d',' -f3)"
+	# Get running and total of replicas
+	RUNNING="$(echo $REPLICAS | cut -d'/' -f1)"
+	TOTAL="$(echo $REPLICAS | cut -d'/' -f2)"
+	PERCENT="$(($RUNNING / $TOTAL))"
+
+	# Print log
+	echo {\"service\":\"$NAME\",\"mode\":\"$MODE\",\"replicas_text\":\"$REPLICAS\",\"running\":$RUNNING,\"total\":$TOTAL,\"running_pct\":$PERCENT}
+done

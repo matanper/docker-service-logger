@@ -1,0 +1,7 @@
+#!/bin/sh
+
+while true;
+do
+	sh /docker-service-log
+	sleep $INTERVAL
+done
