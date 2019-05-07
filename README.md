@@ -10,13 +10,13 @@ the log is in json format and contain the following fields:
 * total - the total number of instances which should run
 * running_pct - perecentage of running instance out of total
 
-### example logs 
+### Example Logs 
 ```
 {"service":"metricbeat","mode":"global","replicas_text":"5/5","running":5,"total":5,"running_pct":1}
 {"service":"redis","mode":"replicated","replicas_text":"3/4","running":3,"total":4,"running_pct":0.75}
 ```
 
-## How to run
+## Usage
 Run from command line:
 ```
 docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-logger
