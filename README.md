@@ -19,16 +19,17 @@ the log is in json format and contain the following fields:
 ## Usage
 Run from command line:
 ```
-docker run -d -v /var/run/docker.sock:/var/run/docker.sock docker-logger
+docker run -d -v /var/run/docker.sock:/var/run/docker.sock -v /usr/bin/docker:/usr/bin/docker docker-logger:debian
 ```
 Or run using compose file
 ```
 version: '3.7'
 services:
   services-logger:
-    image: 'docker-logger:latest'
+    image: 'docker-logger:debian'
       volumes:
         - /var/run/docker.sock:/var/run/docker.sock
+        - /usr/bin/docker:/usr/bin/docker
       deploy:
         replicas: 1
         placement:
